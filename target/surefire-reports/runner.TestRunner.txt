@@ -1,0 +1,14 @@
+-------------------------------------------------------------------------------
+Test set: runner.TestRunner
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.686 s <<< FAILURE! -- in runner.TestRunner
+Login to Sample App.Successful Login -- Time elapsed: 0.152 s <<< ERROR!
+java.lang.NoSuchMethodError: 'void org.openqa.selenium.remote.http.ClientConfig.<init>(java.net.URI, java.time.Duration, java.time.Duration, org.openqa.selenium.remote.http.Filter, java.net.Proxy, org.openqa.selenium.Credentials)'
+	at io.appium.java_client.AppiumClientConfig.<init>(AppiumClientConfig.java:62)
+	at io.appium.java_client.AppiumClientConfig.defaultConfig(AppiumClientConfig.java:79)
+	at io.appium.java_client.remote.AppiumCommandExecutor.<init>(AppiumCommandExecutor.java:109)
+	at io.appium.java_client.AppiumDriver.<init>(AppiumDriver.java:101)
+	at io.appium.java_client.android.AndroidDriver.<init>(AndroidDriver.java:113)
+	at stepdefinitions.Login.the_app_is_launched(Login.java:23)
+	at ✽.the app is launched(file:///C:/Users/user/Downloads/AppiumLoginProject/src/test/resources/features/Login.feature:4)
+
