@@ -1,34 +1,14 @@
 package stepdefinitions;
 
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.options.UiAutomator2Options;
-import io.cucumber.java.en.*;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.By;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.time.Duration;
 import io.appium.java_client.AppiumBy;
+import io.cucumber.java.en.*;
+import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import static hook.hooks.driver;
 
 public class Login {
-    private static AndroidDriver driver;
-
-    @Given("the app is launched")
-    public void the_app_is_launched() throws MalformedURLException {
-        UiAutomator2Options options = new UiAutomator2Options();
-        options.setDeviceName("Android Device");
-        options.setPlatformName("Android");
-        options.setAutomationName("UiAutomator2");
-        options.setApp(System.getProperty("user.dir") + "/apps/Android.SauceLabs.Mobile.Sample.app.2.7.1.apk");
-
-        // Tambahan penting:
-        options.setAppPackage("com.swaglabsmobileapp");
-        options.setAppActivity("com.swaglabsmobileapp.SplashActivity");
-        options.setAutoGrantPermissions(true); // otomatis klik izinkan
-
-        driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), options);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-    }
 
     @When("I enter username {string}")
     public void i_enter_username(String username) {
@@ -51,7 +31,14 @@ public class Login {
     @Then("I should see the product page")
     public void i_should_see_the_product_page() {
         WebElement productTitle = driver.findElement(By.xpath("//android.widget.TextView[@text='PRODUCTS']"));
-        assert productTitle.isDisplayed();
-        driver.quit();
+        Assert.assertTrue(productTitle.isDisplayed());
+    }
+
+    @Then("I Verify Error Massege")
+    public void iVerifyErrorMassege() {
+        WebElement Value = driver.findElement(By.xpath("//android.widget.TextView[@text=\"Username and password do not match any user in this service.\"]"));
+        String ActualValue = Value.getText();
+        String ExpectedValue = "Username and password do not match any user in this service.";
+        Assert.assertEquals(ExpectedValue, ActualValue);
     }
 }
