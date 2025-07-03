@@ -10,7 +10,7 @@ import io.cucumber.junit.CucumberOptions;
         glue = {"stepdefinitions", "hook"},
         plugin = {"pretty", "html:target/cucumber-report.html"},
         monochrome = true,
-        tags = "@Endtoend"
+        tags = "@Sorting4"
 )
 public class TestRunner {
 }
